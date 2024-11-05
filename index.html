@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>AI Behavioral Analysis System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -132,51 +134,61 @@
     </div>
 
     <script>
-        // Update metrics randomly
-        function updateMetrics() {
-            // Update confidence
-            const confidence = (95 + Math.random() * 4).toFixed(1);
-            document.getElementById('confidenceValue').textContent = confidence + '%';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update metrics randomly
+            function updateMetrics() {
+                // Update confidence
+                const confidence = (95 + Math.random() * 4).toFixed(1);
+                document.getElementById('confidenceValue').textContent = confidence + '%';
 
-            // Update features
-            const features = Math.floor(240 + Math.random() * 15);
-            document.getElementById('featuresValue').textContent = features;
+                // Update features
+                const features = Math.floor(240 + Math.random() * 15);
+                document.getElementById('featuresValue').textContent = features;
 
-            // Update processing rate
-            const rate = Math.floor(58 + Math.random() * 4);
-            document.getElementById('processingValue').textContent = rate + ' fps';
-        }
-
-        // Add log entries
-        function addLogEntry() {
-            const logs = [
-                "Behavioral pattern analysis running",
-                "Movement tracking active",
-                "Updating feature recognition",
-                "Processing participant data",
-                "Running sentiment analysis",
-                "Updating behavioral metrics"
-            ];
-            
-            const log = logs[Math.floor(Math.random() * logs.length)];
-            const time = new Date().toLocaleTimeString();
-            const logContent = document.getElementById('logContent');
-            
-            const entry = document.createElement('li');
-            entry.className = 'log-entry';
-            entry.textContent = `[${time}] ${log}`;
-            
-            logContent.appendChild(entry);
-            
-            // Keep only last 8 entries
-            while (logContent.children.length > 8) {
-                logContent.removeChild(logContent.firstChild);
+                // Update processing rate
+                const rate = Math.floor(58 + Math.random() * 4);
+                document.getElementById('processingValue').textContent = rate + ' fps';
             }
-            
-            // Auto-scroll to bottom
-            const systemLog = document.querySelector('.system-log');
-            systemLog.scrollTop = systemLog.scrollHeight;
-        }
 
-        // Update everything periodically
-        setIn
+            // Add log entries
+            function addLogEntry() {
+                const logs = [
+                    "Behavioral pattern analysis running",
+                    "Movement tracking active",
+                    "Updating feature recognition",
+                    "Processing participant data",
+                    "Running sentiment analysis",
+                    "Updating behavioral metrics"
+                ];
+                
+                const log = logs[Math.floor(Math.random() * logs.length)];
+                const time = new Date().toLocaleTimeString();
+                const logContent = document.getElementById('logContent');
+                
+                const entry = document.createElement('li');
+                entry.className = 'log-entry';
+                entry.textContent = `[${time}] ${log}`;
+                
+                logContent.appendChild(entry);
+                
+                // Keep only last 8 entries
+                while (logContent.children.length > 8) {
+                    logContent.removeChild(logContent.firstChild);
+                }
+                
+                // Auto-scroll to bottom
+                const systemLog = document.querySelector('.system-log');
+                systemLog.scrollTop = systemLog.scrollHeight;
+            }
+
+            // Start the updates when the page loads
+            setInterval(updateMetrics, 2000);
+            setInterval(addLogEntry, 3000);
+            
+            // Run initial updates
+            updateMetrics();
+            addLogEntry();
+        });
+    </script>
+</body>
+</html>
